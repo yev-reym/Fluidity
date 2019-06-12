@@ -3,9 +3,13 @@ Javascript 2D Fluid Simulator
 
 Functionality MVP List:
 
-+ Be able to influence movement of fluid with the mouse cursor, changing the velocity of the fluid cells.
++ Be able to influence movement of fluid with the mouse cursor.
 
-+ User can inject the fluid with density that will change the movement of the fluid. 
++ Able to change the viscosity of the fluid.
+
++ Have a source in which the fluid comes out of, and enable multiple sources at the same time.
+
++ User can inject the fluid with density. 
 
 + Show two fluids with different parameters interacting with one another.
 
@@ -13,7 +17,7 @@ Functionality MVP List:
 
 Wireframe: 
 
-+ Still in the works
++ ![WireFrame](https://wireframe.cc/Gts5lc)
 
 
 API + Technology:
