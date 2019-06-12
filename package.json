@@ -1,0 +1,31 @@
+{
+  "name": "Fluidity",
+  "version": "1.0.0",
+  "description": "Javascript 2D Fluid Simulator",
+  "main": "webpack.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yev-reym/Fluidity.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yev-reym/Fluidity/issues"
+  },
+  "homepage": "https://github.com/yev-reym/Fluidity#readme",
+  "dependencies": {
+    "p5": "^0.8.0",
+    "webpack": "^4.33.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.4"
+  }
+}
