@@ -102,11 +102,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', () =>{
-    const space =  new _structures_spatialhash__WEBPACK_IMPORTED_MODULE_0__["default"](10, [0,0], [20,20])
+    const space =  new _structures_spatialhash__WEBPACK_IMPORTED_MODULE_0__["default"](5, [2,2], [40,40])
    
     window.space = space
     window.particle1 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([10, 10], [1, 1], "red");
     window.particle2 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([10, 15], [1, 1], "red");
+    window.particle3 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([2, 35], [1, 1], "red");
+    window.particle4 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([2, 30], [1, 1], "red");
+    window.particle5 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([5, 35], [1, 1], "red");
+
+
+    const canvas = document.getElementById('fluidCanvas');
+    const canvasGL = canvas.getContext('webgl');
+
+    if (canvasGL === null) {
+        alert("Unable to initialize WebGL. Your browser or machine may not support it.");
+        return;
+    }
+
+    canvasGL.clearColor(0.0, 0.0, 0.0, 1.0);
+    canvasGL.clear(canvasGL.COLOR_BUFFER_BIT);
 
 });
 
@@ -227,28 +242,39 @@ class SpatialHash {
     //find particles that are within the bounding box whose dimensions are bound by the support radius of the particle
     findNearestNeighbors(particle){
         //first we get the bounding box boundaries
-        debugger
         const boundingBoxMins = this._gridPos([particle.position[0] - this.s, particle.position[1] - this.s]);
         const boundingBoxMaxs = this._gridPos([particle.position[0] + this.s, particle.position[1] + this.s]);
 
-        const bbXmin = boundingBoxMins[0];
-        const bbXmax = boundingBoxMaxs[0];
-        const bbYmin = boundingBoxMins[1];
-        const bbYmax = boundingBoxMaxs[1];
+        //introduce the clamp function again to filter bounding box range to be inside our grid if on the outside
+        function clamp(num, min, max) {
+            return num <= min ? min : num >= max ? max : num;
+        }
+
+        const bbXmax = clamp(boundingBoxMaxs[0], 0, this.cellY-1);
+        const bbXmin = clamp(boundingBoxMins[0], 0, this.cellY-1);
+        const bbYmin = clamp(boundingBoxMins[1], 0, this.cellY-1);
+        const bbYmax = clamp(boundingBoxMaxs[1], 0, this.cellY-1);
 
         //this will be the array that will store our neighbors within the support radius
-        const neighbors = [];
+        let neighbors = [];
 
         const cells = Object.keys(this.spatialHash);
-        
+
+        //check to see if cell is within the bounds of the bounding box, and if it is then 
+        //concat the values into the array
         cells.forEach((cell) => {
-           // if () check to see if cell is within the bounds of the bounding box, and if it is then 
-           //concat the values into the array, but exclude the particle in the argument
+            if ((parseInt(cell[0]) >= bbXmin && parseInt(cell[0]) <= bbXmax) && (parseInt(cell[2]) >= bbYmin && parseInt(cell[2]) <= bbYmax)){
+                neighbors = neighbors.concat(this.spatialHash[cell])
+            }
         })
 
+        //use this function to filter out particle we are finding neighbors for, since we added it to our neighbors array
+        function particleFilter(value){
+            return value.position !== particle.position
+        }
 
-
-
+        //return the nearest neighbors
+        return neighbors.filter(particleFilter);
         
     }
 
