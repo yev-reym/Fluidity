@@ -97,6 +97,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _structures_spatialhash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./structures/spatialhash */ "./lib/structures/spatialhash.js");
 /* harmony import */ var _structures_particle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./structures/particle */ "./lib/structures/particle.js");
+/* harmony import */ var _rendering_render__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rendering/render */ "./lib/rendering/render.js");
 
 
 
@@ -110,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     window.particle3 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([2, 35], [1, 1], "red");
     window.particle4 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([2, 30], [1, 1], "red");
     window.particle5 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([5, 35], [1, 1], "red");
+    window.particleImg = _rendering_render__WEBPACK_IMPORTED_MODULE_2__["particleImg"];
 
 
     const canvas = document.getElementById('fluidCanvas');
@@ -124,6 +126,21 @@ document.addEventListener('DOMContentLoaded', () =>{
     canvasGL.clear(canvasGL.COLOR_BUFFER_BIT);
 
 });
+
+/***/ }),
+
+/***/ "./lib/rendering/render.js":
+/*!*********************************!*\
+  !*** ./lib/rendering/render.js ***!
+  \*********************************/
+/*! exports provided: particleImg */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "particleImg", function() { return particleImg; });
+
+const particleImg = new p5.Textures.loadimage('images/particle_no_border.png')
 
 /***/ }),
 
