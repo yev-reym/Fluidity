@@ -28,7 +28,8 @@
     "gl-texture2d": "^2.1.0",
     "glslify": "^7.0.0",
     "p5": "^0.8.0",
-    "webpack": "^4.33.0"
+    "webpack": "^4.33.0",
+    "webpack-glsl-loader": "^1.0.1"
   },
   "devDependencies": {
     "webpack-cli": "^3.3.4"
