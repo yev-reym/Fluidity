@@ -153,8 +153,10 @@ __webpack_require__.r(__webpack_exports__);
 //cartesian sets grid origin in the center, while the screen has the origin in the top-left corner of the screen
 //the basic formula is to multiply the x coordinate by a zoom factor, and then add that to half of the screen width
 function cartToPixel(position, canvasWidth, canvasHeight) {
-    const x = ((position[0] / 2.0) * canvasHeight) + canvasWidth / 2.0
-    const y = (canvasWidth / 2.0) - canvasHeight * position[1]
+    // const x = ((position[0] / 2.0) * canvasHeight) + canvasWidth / 2.0
+    // const y = (canvasWidth / 2.0) - canvasHeight * position[1]
+    var x = ((position[0] + 1) / 2.0) * canvasWidth;
+    var y = (((position[1] + 1) / 2.0) * canvasHeight);
     return [x,y]
 }
 
@@ -269,7 +271,7 @@ class SimMesh {
 __webpack_require__.r(__webpack_exports__);
 
 
-function particle (pos, vel, color) {
+function Particle (pos, vel, color) {
     this.position = pos;
     this.velocity = new p5.Vector(vel[0], vel[1]);
 
@@ -277,7 +279,7 @@ function particle (pos, vel, color) {
 
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (particle);
+/* harmony default export */ __webpack_exports__["default"] = (Particle);
 
 /***/ }),
 

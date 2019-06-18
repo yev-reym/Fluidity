@@ -23,6 +23,7 @@
   "homepage": "https://github.com/yev-reym/Fluidity#readme",
   "dependencies": {
     "gl-buffer": "^2.1.2",
+    "gl-matrix": "^3.0.0",
     "gl-now": "^1.4.0",
     "gl-shader": "^4.2.1",
     "gl-texture2d": "^2.1.0",
