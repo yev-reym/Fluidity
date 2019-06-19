@@ -1,6 +1,5 @@
 // webpack.config.js
 var path = require('path');
-const ROOT_PATH = path.resolve(__dirname);
 
 module.exports = { 
     entry: './lib/fluidity.js',
@@ -13,11 +12,6 @@ module.exports = {
     },
     module: {
         rules: [
-             {
-                test: /\.glsl$/,
-                include: path.resolve(ROOT_PATH, 'lib/shader'),
-                loader: 'webpack-glsl-loader'
-            },
             { test: /\.png$/, use: 'url-loader?mimetype=image/png' }
         ]
     },
