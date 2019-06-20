@@ -124,7 +124,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     window.particle5 = new _structures_particle__WEBPACK_IMPORTED_MODULE_1__["default"]([5, 35], [1, 1], "red");
     window.vector1 = new p5.Vector(1, 2);
     window.vector2 = new p5.Vector(9, 10);
-    window.capsule = new _structures_capsule__WEBPACK_IMPORTED_MODULE_2__["Capsule"](_util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MIN"], [_util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MIN"][0], _util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MAX"][1]], 15, {'r':255, 'g':255, 'b': 51})
+    window.capsule1 = new _structures_capsule__WEBPACK_IMPORTED_MODULE_2__["Capsule"]([_util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MIN"][0], _util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MIN"][1] + 30], [_util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MAX"][0], _util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MIN"][1] + 30], 15, {'r':255, 'g':255, 'b': 51})
+    // window.capsule = new Capsule([constants.CONTAINER_MIN[0], constants.CONTAINER_MIN[1] + 15], [constants.CONTAINER_MIN[0], constants.CONTAINER_MAX[1] + 15], 15, { 'r': 255, 'g': 255, 'b': 51 })    
+    window.capsule2 = new _structures_capsule__WEBPACK_IMPORTED_MODULE_2__["Capsule"]([_util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MIN"][0], _util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MAX"][1] - 15], [_util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MAX"][0], _util_scaling_consts__WEBPACK_IMPORTED_MODULE_3__["CONTAINER_MAX"][1] - 15], 15, { 'r': 255, 'g': 255, 'b': 51 })   
+    window.capsule3 = new _structures_capsule__WEBPACK_IMPORTED_MODULE_2__["Capsule"]([400, 500], [600, 700], 15, { 'r': 255, 'g': 255, 'b': 51 });       
     window.render = new _rendering_render_main__WEBPACK_IMPORTED_MODULE_4__["default"](context, canvas.width, canvas.height);
 
  
@@ -172,13 +175,17 @@ class Render {
             let lineSegmentLength = endPoint.dist(startPoint) ; 
             
             debugger
+            //for now just draw the frame, will later update for allowing users to draw capsules
+            //top
             this.context.beginPath();
             this.context.fillStyle = 'rgb(255,255,51)';
-            this.context.arc(endPoint['x'], endPoint['y'], capsule.radius, 1.5 * Math.PI, 0.5 * Math.PI);
+            this.context.arc(endPoint['x'], endPoint['y'] - capsule.radius, capsule.radius, 1.5 * Math.PI, 0.5 * Math.PI);
             this.context.fillRect(startPoint['x'], startPoint['y'] - capsule.radius, lineSegmentLength , 30);
-            this.context.arc(startPoint['x'], startPoint['y'], capsule.radius, 0.5 * Math.PI, 1.5 * Math.PI);
+            this.context.arc(startPoint['x'], startPoint['y'] - capsule.radius, capsule.radius, 0.5 * Math.PI, 1.5 * Math.PI);
             this.context.fill();
             this.context.closePath();
+
+            
     }
 
     _drawParticle(){
