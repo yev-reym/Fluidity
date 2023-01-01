@@ -23,9 +23,9 @@
   "homepage": "https://github.com/yev-reym/Fluidity#readme",
   "dependencies": {
     "p5": "^0.8.0",
-    "webpack": "^4.33.0"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.4"
+    "webpack-cli": "^5.0.1"
   }
 }
